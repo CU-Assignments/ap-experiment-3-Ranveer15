@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+// Definition of a node
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = nullptr;
+    }
+};
+
+// Function to print the linked list
+void printLinkedList(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data;
+        if (temp->next != nullptr) cout << " ";  // Add space only if there's a next node
+        temp = temp->next;
+    }
+    cout << endl;  // Move to the next line after printing
+}
+
+// Function to insert a node at the end
+void insert(Node*& head, int val) {
+    Node* newNode = new Node(val);
+    if (head == nullptr) {
+        head = newNode;
+        return;
+    }
+    Node* temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+int main() {
+    Node* head = nullptr;
+
+    // Example: Creating a linked list 49 -> 10 -> 30
+    insert(head, 49);
+    insert(head, 10);
+    insert(head, 30);
+
+    // Print the linked list
+    printLinkedList(head);
+
+    return 0;
+}
