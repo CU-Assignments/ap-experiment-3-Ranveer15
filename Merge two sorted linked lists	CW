@@ -1,0 +1,26 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* l1 = list1;
+        ListNode* l2 = list2;
+        ListNode dummy(0);  // Dummy node to start the new list
+        ListNode* l = &dummy; // Pointer to build the merged list
+
+        while (l1 != NULL && l2 != NULL) {
+            if (l1->val <= l2->val) {
+                l->next = l1;
+                l1 = l1->next;
+            } else {
+                l->next = l2;
+                l2 = l2->next;
+            }
+            l = l->next;
+        }
+
+        // Attach the remaining elements
+        if (l1 != NULL) l->next = l1;
+        if (l2 != NULL) l->next = l2;
+
+        return dummy.next; // Return the head of the merged list
+    }
+};
